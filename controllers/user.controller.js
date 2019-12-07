@@ -6,7 +6,7 @@ exports.user_create = function (req, res) {
         {
             name: req.body.name,
             pass: req.body.pass,
-            //notes: req.body.notes
+            notes: req.body.notes
         }
     );
 
@@ -15,5 +15,13 @@ exports.user_create = function (req, res) {
             return next(err);
         }
         res.send('New User Created successfully')
+    })
+};
+
+
+exports.user_profile = function (req, res) {
+    User.findById(req.params.id, function (err, user) {
+        if (err) return next(err);
+        res.send(user);
     })
 };

@@ -8,5 +8,5 @@ let NoteSchema = new Schema({
 });
 
 
-
+//module.exports = mongoose.model('Note', UserSchema);
 module.exports = NoteSchema;
