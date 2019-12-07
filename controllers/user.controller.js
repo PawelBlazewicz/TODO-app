@@ -42,3 +42,25 @@ exports.add_note = function (req, res) {
         })  
      })   
 };
+
+exports.remove_note = function (req, res) {
+    User.findById(req.params.id, function (err, user) {
+       if (err) return next(err);
+
+       note = user.notes.id(req.body.id)
+       if(note) {
+            note.remove();  
+
+            user.save(function (err) {
+                if (err) {
+                    return next(err);
+                }
+                res.send('Note removed successfully')
+            }) 
+
+       } else {
+        res.send('Note not found') 
+       } 
+        
+    })   
+};

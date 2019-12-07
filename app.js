@@ -7,8 +7,6 @@ const API = 'http://localhost:3041/API/users'
 const userId = localStorage.getItem('userId');
 //const token = localStorage.getItem('token');
 
-console.log(userId)
-
 const getNotes = async id => {
     
     const get = await fetch(`${API}/GET/${id}`);
@@ -19,7 +17,6 @@ const getNotes = async id => {
 getNotes(userId).then(data => {
     console.log(data) })
 
-//http://localhost:3041/API/users/PUT/note/5deb8d1a06fe7638745c6806
 
 const addNote = (note, id) => {
     const options = {
@@ -29,7 +26,6 @@ const addNote = (note, id) => {
             'Content-Type': 'application/json'
         }
     }
-
     fetch(`${API}/PUT/note/${id}`, options)
 }
 
