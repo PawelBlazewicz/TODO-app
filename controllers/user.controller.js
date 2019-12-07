@@ -39,8 +39,6 @@ exports.add_note = function (req, res) {
                 return next(err);
             }
             res.send('New note added successfully')
-        })
-
-  
+        })  
      })   
 };
