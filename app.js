@@ -15,4 +15,5 @@ note.get(userId).then(data => {
 
     // note.remove(userId, "5debdaef44b18f05147d4ba9")
     //note.add(userId, "notatka")
+    //note.toggle(userId, "5debce7d933e913614509b21")
 

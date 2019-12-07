@@ -64,3 +64,25 @@ exports.remove_note = function (req, res) {
         
     })   
 };
+
+exports.toggle_note = function (req, res) {
+    User.findById(req.params.id, function (err, user) {
+       if (err) return next(err);
+
+       note = user.notes.id(req.body.id)
+       if(note) {
+            note.done = !note.done 
+
+            user.save(function (err) {
+                if (err) {
+                    return next(err);
+                }
+                res.send('Note toggled successfully')
+            }) 
+
+       } else {
+        res.send('Note not found') 
+       } 
+        
+    })   
+};

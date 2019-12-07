@@ -7,7 +7,7 @@ export const get = async id => {
     return data.notes;
 };
 
-export const add = (id, note) => {
+export const add = async (id, note) => {
     const options = {
         method: 'PUT',
         body: JSON.stringify({text : note}),
@@ -15,10 +15,10 @@ export const add = (id, note) => {
             'Content-Type': 'application/json'
         }
     }
-    fetch(`${API}/PUT/note/${id}`, options)
+    await fetch(`${API}/PUT/note/${id}`, options)
 }
 
-export const remove = (id, noteId) => {
+export const remove = async (id, noteId) => {
     const options = {
         method: 'DELETE',
         body: JSON.stringify({id : noteId}),
@@ -26,5 +26,16 @@ export const remove = (id, noteId) => {
             'Content-Type': 'application/json'
         }
     }
-    fetch(`${API}/DELETE/note/${id}`, options)
+    await fetch(`${API}/DELETE/note/${id}`, options)
+}
+
+export const toggle = async (id, noteId) => {
+    const options = {
+        method: 'PATCH',
+        body: JSON.stringify({id : noteId}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    await fetch(`${API}/PATCH/note/${id}`, options)
 }

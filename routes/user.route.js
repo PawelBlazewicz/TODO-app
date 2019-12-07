@@ -12,4 +12,7 @@ router.put('/PUT/note/:id/', user_controller.add_note);
 
 router.delete('/DELETE/note/:id/', user_controller.remove_note);
 
+router.patch('/PATCH/note/:id/', user_controller.toggle_note);
+
+
 module.exports = router;
