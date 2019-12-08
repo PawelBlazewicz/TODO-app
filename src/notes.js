@@ -1,4 +1,6 @@
 const API = 'http://localhost:3041/API/users'
+//const token = localStorage.getItem('token'); 
+
 
 export const get = async id => {
     
@@ -15,7 +17,7 @@ export const add = async (id, note) => {
             'Content-Type': 'application/json'
         }
     }
-    await fetch(`${API}/PUT/note/${id}`, options)
+    await fetch(`${API}/PUT/note/${id}`, options);
 }
 
 export const remove = async (id, noteId) => {
