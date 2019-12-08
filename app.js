@@ -5,7 +5,12 @@ const mockID = '5dec24f25c633f29701ffbb8'
 localStorage.setItem('userId', mockID);
 
 
-initNotes();
+
+
+
+initNotes("✔ TODO List ✏");
+initNotes("✏ In progres");
+initNotes("✔ Done");
 
 
 

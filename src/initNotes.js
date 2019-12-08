@@ -12,27 +12,25 @@ const appendNote = async (e) => {
 
 const menageNotes = async (e) => {
     const id = e.target.parentElement.dataset.id;
-    if (!e.target.matches('input')) { 
-        return; 
-    } else if (e.target.matches('input.delete')) {
+   if (e.target.matches('input.delete')) {
         await note.remove(userId, id)
     }else {
         const id = e.target.parentElement.dataset.id;
         await note.toggle(userId, id);
     }
-    showNotes();
-    
+    showNotes();    
 }
 
 
 
 
-export default () => {
+export default (title, enu) => {
     const noteDestination = document.querySelector("body");
   
     const noteContainer = document.createElement("div");
     noteContainer.classList.add("noteContainer");
     noteDestination.appendChild(noteContainer);
+    noteContainer.innerHTML= `<h1>${title || "✔ TODO"}</h1>`;
     const noteList = document.createElement("div");
     noteList.classList.add("noteList");
     noteContainer.appendChild(noteList);
