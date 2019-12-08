@@ -8,7 +8,24 @@ const appendNote = async (e) => {
     await note.add(userId, text); 
     showNotes();
     document.querySelector('.noteText').value= "";    
-    };
+};
+
+const menageNotes = async (e) => {
+    const id = e.target.parentElement.dataset.id;
+    if (!e.target.matches('input')) { 
+        return; 
+    } else if (e.target.matches('input.delete')) {
+        await note.remove(userId, id)
+    }else {
+        const id = e.target.parentElement.dataset.id;
+        await note.toggle(userId, id);
+    }
+    showNotes();
+    
+}
+
+
+
 
 export default () => {
     const noteDestination = document.querySelector("body");
@@ -30,6 +47,8 @@ export default () => {
       </form>    
       `;
       document.querySelector(".add-notes").addEventListener("submit", appendNote);
+      document.querySelector(".noteList").addEventListener("click", menageNotes);
+
   };
 
 
@@ -40,8 +59,8 @@ const showNotes = async () => {
   document.querySelector(".noteList").innerHTML = notes.reduce(
     (html, note, i) => {
       return (html += `
-          <li>
-            <input type="checkbox" data-id=${note._id} id="item_${i}" ${note.done ? " checked" : ""} />
+            <li data-id=${note._id}>
+            <input type="checkbox"  id="item_${i}" ${note.done ? " checked" : ""} />
             <label for="item${i}" ${note.done ? 'class="done"' : ""}>${
         note.text
       }</label>
