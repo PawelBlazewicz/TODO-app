@@ -1,10 +1,9 @@
-const API = 'http://localhost:3041/API/users'
 //const token = localStorage.getItem('token'); 
 
 
 export const get = async id => {
     
-    const get = await fetch(`${API}/GET/${id}`);
+    const get = await fetch(`/GET/${id}`);
     const data = await get.json();
     return data.notes;
 };
@@ -17,7 +16,7 @@ export const add = async (id, note, position) => {
             'Content-Type': 'application/json'
         }
     }
-    await fetch(`${API}/PUT/note/${id}`, options);
+    await fetch(`/PUT/note/${id}`, options);
 }
 
 export const remove = async (id, noteId) => {
@@ -28,7 +27,7 @@ export const remove = async (id, noteId) => {
             'Content-Type': 'application/json'
         }
     }
-    await fetch(`${API}/DELETE/note/${id}`, options)
+    await fetch(`/DELETE/note/${id}`, options)
 }
 
 export const toggle = async (id, noteId) => {
@@ -39,5 +38,5 @@ export const toggle = async (id, noteId) => {
             'Content-Type': 'application/json'
         }
     }
-    await fetch(`${API}/PATCH/note/${id}`, options)
+    await fetch(`/PATCH/note/${id}`, options)
 }

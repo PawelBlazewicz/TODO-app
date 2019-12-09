@@ -41,12 +41,12 @@ router.post('/register', (req, res) => {
         })
 })
 
-router.get('/login', (req, res) => {
-    res.render('login');
-})
-
 router.get('/loged', (req, res) => {
     res.render('loged');
+})
+
+router.get('/login', (req, res) => {
+    res.render('login');
 })
 
 router.post('/login', (req, res) => {
