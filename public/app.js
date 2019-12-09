@@ -1,4 +1,5 @@
-import initNotes from './src/initNotes.js'
+import initNotes from '/src/initNotes.js'
+//const initNotes = require('../src/initNotes.js')
 
 //ustawiane po zalogowaniu 
 const mockID = '5dec24f25c633f29701ffbb8'

@@ -7,6 +7,9 @@
 body {
     background-color: #333;
     color: white;
+}
+
+.test {
     height: 100vh;
     display: flex;
     justify-content: space-around;
@@ -78,3 +81,7 @@ hr {
     font-family: 'Miriam Libre', sans-serif;
     border: #276c12 solid 2px;
 }
+
+.hide{
+    transform:translateX(-9999px);
+  }

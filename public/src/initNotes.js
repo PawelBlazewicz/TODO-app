@@ -1,6 +1,6 @@
 var notes;
 const userId = localStorage.getItem("userId");
-import * as note from "../src/notes.js";
+import * as note from "/src/notes.js";
 
 const appendNote = async e => {
   e.preventDefault();
@@ -23,7 +23,7 @@ const menageNotes = async e => {
 };
 
 export default (title, enu) => {
-  const noteDestination = document.querySelector("body");
+  const noteDestination = document.querySelector(".test");
 
   const noteContainer = document.createElement("div");
   noteContainer.classList.add("noteContainer");
@@ -49,7 +49,33 @@ export default (title, enu) => {
   document
     .querySelector(`.noteList${enu}`)
     .addEventListener("click", menageNotes);
+  document
+    .querySelector(`.noteList${enu}`)
+    .addEventListener("dragstart", startDrag  );
+    document
+    .querySelector(`.noteList${enu}`)
+    .addEventListener("dragend", endDrag  );
+    document
+    .querySelector(`.noteList${enu}`)
+    .addEventListener("dragenter", drop );
 };
+
+function startDrag(e) {  
+  setTimeout(function(){
+    e.target.classList.add('hide');
+  });
+}
+
+function endDrag(e) {  
+  e.target.classList.remove('hide');
+  //console.log(e.target)//.dataset.position); 
+}
+
+function drop(e) {  
+    e.target.classList.remove('hide');
+    event.preventDefault();
+    console.log(e.target,"xd")//.dataset.position);
+  }
 
 const showNotes = async (...args) => {
   notes = (await note.get(userId)) || [];
@@ -60,7 +86,7 @@ const showNotes = async (...args) => {
       .reduce(
         (html, note, i) => {
           return (html += `
-            <li data-id=${note._id}>
+            <li data-id=${note._id} data-position=${position} draggable="true">
             <input type="checkbox"  id="item_${i}" ${note.done ? " checked" : ""} />
             <label for="item${i}" ${note.done ? 'class="done"' : ""}>${note.text}</label>
             <input type="submit" class="delete" value="DEL">
