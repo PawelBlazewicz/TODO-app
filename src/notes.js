@@ -9,10 +9,10 @@ export const get = async id => {
     return data.notes;
 };
 
-export const add = async (id, note) => {
+export const add = async (id, note, position) => {
     const options = {
         method: 'PUT',
-        body: JSON.stringify({text : note}),
+        body: JSON.stringify({text : note, position: position}),
         headers: {
             'Content-Type': 'application/json'
         }

@@ -32,7 +32,7 @@ exports.user_profile = function (req, res) {
 exports.add_note = function (req, res) {
      User.findById(req.params.id, function (err, user) {
         if (err) return next(err);
-        user.notes.push(new Note({text : req.body.text}) ) 
+        user.notes.push(new Note({text : req.body.text, position : req.body.position }) ) 
        
         user.save(function (err) {
             if (err) {

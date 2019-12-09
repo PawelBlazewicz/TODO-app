@@ -6,18 +6,6 @@ localStorage.setItem('userId', mockID);
 
 
 
-
-
-initNotes("✔ TODO List ✏");
-initNotes("✏ In progres");
-initNotes("✔ Done");
-
-
-
-
-
-
-
-
-
-
+initNotes("✔ TODO List ✏", 1);
+initNotes("✏ In progres", 2);
+initNotes("✔ Done", 3);
