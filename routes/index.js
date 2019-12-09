@@ -1,7 +1,8 @@
 const express = require('express'),
       router  = express.Router(),
       User    = require('../models/user.model'),
-      bcrypt  = require('bcryptjs');
+      bcrypt  = require('bcryptjs'),
+      jwt     = require('jsonwebtoken');
 
 // MAIN SITE
 router.get('/', (req, res) => {
@@ -33,7 +34,7 @@ router.post('/register', (req, res) => {
                             .save()
                             .then(res.redirect('/login'))
                             .catch(err =>{
-                                consile.log(err);
+                                console.log(err);
                             });
                     }
                 });
@@ -61,7 +62,17 @@ router.post('/login', (req, res) => {
                     res.send('Auth failed');
                 }
                 if(result) {
-                    res.redirect('/loged');
+                    const token = jwt.sign({
+                        user: user[0].user,
+                        userId: user[0]._id
+                    },
+                    process.env.JWT_KEY || "secretKey",
+                    {
+                        expiresIn: "1h"
+                    });
+                    console.log(user);
+                    res.status(200).header('x-auth', token);
+                    res.render('loged', {user:user[0]});
                 }
             })
     })

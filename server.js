@@ -4,6 +4,9 @@ const express = require("express"),
   app = express(),
   mongoose = require("mongoose");
 
+// ROUTES REQUIRING
+const indexRoutes = require("./routes/index");
+
 // DB CONFIG
 var dev_db_url =
   "mongodb+srv://someuser:abcd1234@cluster0-wlozt.mongodb.net/test?retryWrites=true&w=majority";
@@ -20,8 +23,10 @@ app.use("/", user);
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 
-// ROUTES REQUIRING
-const indexRoutes = require("./routes/index");
+app.use(function(req, res, next){
+  res.locals.user = req.user;
+  next();
+});
 
 // ROUTES INCLUDING
 app.use(indexRoutes);

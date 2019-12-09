@@ -16,7 +16,8 @@
             Mintrello
         </a>
         <ul class='nav-list'>
-            <li class='nav-item'>
+            <% if(!user) { %>
+                <li class='nav-item'>
                 <a class='nav-link' href='/login'>
                     Login
                 </a>
@@ -26,15 +27,12 @@
                     Sign up
                 </a>
             </li>
+            <% } else { %>
             <li class='nav-item'>
                 <a class='nav-link' href='#'>
-                    Logged in as:
+                    Logged in as: <%= user.name %>
                 </a>
             </li>
-            <li class='nav-item'>
-                <a class='nav-link' href='/logout'>
-                    Logout
-                </a>
-            </li>
+            <% } %>
         </ul>
     </nav>
