@@ -4,6 +4,20 @@ const express    = require('express'),
       app        = express(),
       mongoose   = require('mongoose');
 
+      var allowCrossDomain = function(req, res, next) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    
+        // intercept OPTIONS method
+        if ('OPTIONS' == req.method) {
+          res.send(200);
+        }
+        else {
+          next();
+        }
+    };
+
 // DB CONFIG
 var dev_db_url = 'mongodb+srv://someuser:abcd1234@cluster0-wlozt.mongodb.net/test?retryWrites=true&w=majority';
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
@@ -13,6 +27,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // APP CONFIG 
+app.use(allowCrossDomain);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/API/users', user);
