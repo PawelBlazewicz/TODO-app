@@ -45,6 +45,10 @@ router.get('/login', (req, res) => {
     res.render('login');
 })
 
+router.get('/loged', (req, res) => {
+    res.render('loged');
+})
+
 router.post('/login', (req, res) => {
     User.find({name: req.body.username})
         .exec()
@@ -57,12 +61,12 @@ router.post('/login', (req, res) => {
                     res.send('Auth failed');
                 }
                 if(result) {
-                    res.send('Auth successful');
+                    res.redirect('/loged');
                 }
             })
     })
         .catch(err =>{
-        consile.log(err);
+        console.log(err);
     });
 });
 
