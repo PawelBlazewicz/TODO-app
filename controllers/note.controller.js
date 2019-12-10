@@ -4,32 +4,14 @@ const NoteSchema = require('../models/note.model');
 const Note = mongoose.model('Note', NoteSchema);
 
 
-exports.user_create = function (req, res) {
-    let user = new User(
-        {
-            name: req.body.name,
-            pass: req.body.pass,
-            notes: req.body.notes
-        }
-    );
-
-    user.save(function (err) {
-        if (err) {
-            return next(err);
-        }
-        res.send('New User Created successfully')
-    })
-};
-
-
-exports.user_profile = function (req, res) {
+exports.getNotes = function (req, res) {
     User.findById(req.params.id, function (err, user) {
         if (err) return next(err);
         res.send(user);
     })
 };
 
-exports.add_note = function (req, res) {
+exports.addNote = function (req, res) {
      User.findById(req.params.id, function (err, user) {
         if (err) return next(err);
         user.notes.push(new Note({text : req.body.text, position : req.body.position }) ) 
@@ -43,7 +25,7 @@ exports.add_note = function (req, res) {
      })   
 };
 
-exports.remove_note = function (req, res) {
+exports.removeNote = function (req, res) {
     User.findById(req.params.id, function (err, user) {
        if (err) return next(err);
 
@@ -65,7 +47,7 @@ exports.remove_note = function (req, res) {
     })   
 };
 
-exports.toggle_note = function (req, res) {
+exports.toggleNote = function (req, res) {
     User.findById(req.params.id, function (err, user) {
        if (err) return next(err);
 

@@ -1,6 +1,3 @@
-//const token = localStorage.getItem('token'); 
-
-
 export const get = async id => {
     
     const get = await fetch(`/GET/${id}`);
