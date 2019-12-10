@@ -5,10 +5,10 @@ import * as note from "/src/notes.js";
 const appendNote = async e => {
   e.preventDefault();
   const position = e.target.parentElement.parentElement.dataset.position;
-  const text = document.querySelector(`.noteText${position}`).value;
+  const text = document.querySelector(`.note-text${position}`).value;
   await note.add(userId, text, position);
   showNotes(position);
-  document.querySelector(`.noteText${position}`).value = "";
+  document.querySelector(`.note-text${position}`).value = "";
 };
 
 const menageNotes = async e => {
@@ -23,40 +23,40 @@ const menageNotes = async e => {
 };
 
 export default (title, enu) => {
-  const noteDestination = document.querySelector(".test");
+  const noteDestination = document.querySelector(".note-main");
 
   const noteContainer = document.createElement("div");
-  noteContainer.classList.add("noteContainer");
+  noteContainer.classList.add("note-container");
   noteDestination.appendChild(noteContainer);
   noteContainer.dataset.position = enu;
-  noteContainer.innerHTML = `<h1>${title || "✔ TODO"}</h1>`;
+  noteContainer.innerHTML = `<h1 class="list-title">${title || "✔ TODO"}</h1>`;
   const noteList = document.createElement("div");
-  noteList.classList.add(`noteList${enu}`);
+  noteList.classList.add(`note-list${enu}`);
   noteContainer.appendChild(noteList);
   showNotes(1, 2, 3);
   const addNote = document.createElement("div");
-  addNote.classList.add("addNote");
+  addNote.classList.add("add-note");
   noteContainer.appendChild(addNote);
   addNote.innerHTML = `
-      <form class="add-notes add-notes${enu}">
-      <textarea name="note" class="noteText noteText${enu}" placeholder="New Note" required></textarea>
+      <form class="note-form note-form${enu}">
+      <textarea name="note" class="note-text note-text${enu}" placeholder="New Note" required></textarea>
       <input type="submit" class="add-btn" value="ADD">        
       </form>    
       `;
   document
-    .querySelector(`.add-notes${enu}`)
+    .querySelector(`.note-form${enu}`)
     .addEventListener("submit", appendNote);
   document
-    .querySelector(`.noteList${enu}`)
+    .querySelector(`.note-list${enu}`)
     .addEventListener("click", menageNotes);
   document
-    .querySelector(`.noteList${enu}`)
+    .querySelector(`.note-list${enu}`)
     .addEventListener("dragstart", startDrag  );
     document
-    .querySelector(`.noteList${enu}`)
+    .querySelector(`.note-list${enu}`)
     .addEventListener("dragend", endDrag  );
     document
-    .querySelector(`.noteList${enu}`)
+    .querySelector(`.note-list${enu}`)
     .addEventListener("dragenter", drop );
 };
 
@@ -81,16 +81,15 @@ const showNotes = async (...args) => {
   notes = (await note.get(userId)) || [];
   if (!notes.length) return;
   args.forEach(position => {
-    document.querySelector(`.noteList${position}`).innerHTML = notes
+    document.querySelector(`.note-list${position}`).innerHTML = notes
       .filter(note => note.position == position)
       .reduce(
         (html, note, i) => {
           return (html += `
-            <li data-id=${note._id} data-position=${position} draggable="true">
-            <input type="checkbox"  id="item_${i}" ${note.done ? " checked" : ""} />
-            <label for="item${i}" ${note.done ? 'class="done"' : ""}>${note.text}</label>
+            <li data-id=${note._id} data-position=${position} draggable="true" class="note-box">
+            <label for="item${i}" ${note.done ? 'class="done task-text"' : 'class="task-text"'}>${note.text}</label>
             <input type="submit" class="delete" value="DEL">
-          </li><hr>
+          </li>
           `);
         },
         "" //initial value of accumulator
