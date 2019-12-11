@@ -92,7 +92,7 @@ body {
 }
 
 .note-main {
-    height: 100vh;
+    height: calc(100vh - 44px);
     display: flex;
     justify-content: space-around;
     align-items: center;
