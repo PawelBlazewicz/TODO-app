@@ -1,8 +1,9 @@
-const express = require('express'),
-      router  = express.Router(),
-      User    = require('../models/user.model'),
-      bcrypt  = require('bcryptjs'),
-      jwt     = require('jsonwebtoken');
+const express    = require('express'),
+      router     = express.Router(),
+      User       = require('../models/user.model'),
+      bcrypt     = require('bcryptjs'),
+      jwt        = require('jsonwebtoken'),
+      middleware = require('../middlewares/auth');
 
 // MAIN SITE
 router.get('/', (req, res) => {
@@ -42,7 +43,7 @@ router.post('/register', (req, res) => {
         })
 })
 
-router.get('/loged', (req, res) => {
+router.get('/loged', middleware.checkToken, (req, res) => {
     res.render('loged');
 })
 
