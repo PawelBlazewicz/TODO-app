@@ -5,8 +5,7 @@ export default async (...args) => {
     if (!notes.length) {
       return;
     }
-    if (!args.length) {
-      console.log(notes);
+    if (!args.length) {     
       args = [...new Set(notes.map(note => note.position))];
     }
     args.forEach(position => {

@@ -54,7 +54,7 @@ export default (enu) => {
     .querySelector(`.note-list${enu}`)
     .addEventListener("dragend", endDrag);
   document
-    .querySelector(`.note-list${enu}`)
+    .querySelector(`.note-container${enu}`)
     .addEventListener("dragenter", getNewPosition);
   document
     .querySelector(`.note-form${enu}`)

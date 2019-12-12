@@ -8,6 +8,7 @@ export default (title, enu) => {
 
   const noteContainer = document.createElement("div");
   noteContainer.classList.add("note-container");
+  noteContainer.classList.add(`note-container${enu}`);
   noteDestination.appendChild(noteContainer);
   noteContainer.dataset.position = enu;
   noteContainer.innerHTML = `<h1 class="list-title">${title || "✔ TODO"}</h1>`;
