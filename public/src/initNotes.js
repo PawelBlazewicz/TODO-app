@@ -16,7 +16,7 @@ export default (title, enu) => {
   noteList.classList.add(`note-list`);
   noteList.dataset.position = enu;
   noteContainer.appendChild(noteList);
-  showNotes(1, 2, 3);
+  showNotes();
   const addNote = document.createElement("div");
   addNote.classList.add("add-note");
   noteContainer.appendChild(addNote);

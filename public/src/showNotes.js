@@ -2,7 +2,12 @@ import {get as getNote} from "/src/notes.js"
 
 export default async (...args) => {
     const notes = (await getNote()) || [];
-    if (!notes.length) return;
+    if (!notes.length) {
+      return;
+    }
+    if (!args.length) {
+      args = [...new Set(notes.map(x => note.position))];
+    }
     args.forEach(position => {
       document.querySelector(`.note-list${position}`).innerHTML = notes
         .filter(note => note.position == position)

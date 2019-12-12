@@ -18,7 +18,7 @@ const menageNotes = async e => {
     const id = e.target.parentElement.dataset.id;
     await note.toggle(id);
   }
-  showNotes(1,2,3);
+  showNotes();
 };
 
 var newPosition = "";
@@ -35,7 +35,7 @@ async function endDrag(e) {
   console.log(e.target.dataset.id, e.target.dataset.position, newPosition);
   if (e.target.dataset.position !== newPosition && newPosition) {
     await note.move(e.target.dataset.id, newPosition);
-    showNotes(1, 2, 3);
+    showNotes();
   }
 }
 
@@ -46,7 +46,7 @@ function getNewPosition(e) {
     newPosition = e.target.dataset.position;
   }
 }
-export default enu => {
+export default (enu) => {
   document
     .querySelector(`.note-list${enu}`)
     .addEventListener("dragstart", startDrag);
