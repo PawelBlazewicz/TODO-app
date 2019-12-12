@@ -6,7 +6,8 @@ export default async (...args) => {
       return;
     }
     if (!args.length) {
-      args = [...new Set(notes.map(x => note.position))];
+      console.log(notes);
+      args = [...new Set(notes.map(note => note.position))];
     }
     args.forEach(position => {
       document.querySelector(`.note-list${position}`).innerHTML = notes
