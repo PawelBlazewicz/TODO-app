@@ -32,7 +32,6 @@ function startDrag(e) {
 async function endDrag(e) {
   e.preventDefault();
   e.target.classList.remove("hide");
-  console.log(e.target.dataset.id, e.target.dataset.position, newPosition);
   if (e.target.dataset.position !== newPosition && newPosition) {
     await note.move(e.target.dataset.id, newPosition);
     showNotes();
@@ -41,7 +40,6 @@ async function endDrag(e) {
 
 function getNewPosition(e) {
   e.preventDefault();
-  console.log(e.target.dataset.position);
   if (e.target.dataset.position) {
     newPosition = e.target.dataset.position;
   }

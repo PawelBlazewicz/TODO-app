@@ -59,7 +59,7 @@ router.post('/login', (req, res) => {
                 res.send('Auth failed');
             }
             bcrypt.compare(req.body.password, user[0].pass, (err, result) => {
-                if(err) {
+                if(!result) {
                     res.send('Auth failed');
                 }
                 if(result) {
