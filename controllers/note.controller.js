@@ -53,7 +53,12 @@ exports.toggleNote = function (req, res) {
 
        note = user.notes.id(req.body.id)
        if(note) {
-            note.done = !note.done 
+           if (req.body.position) {
+               note.position = req.body.position;
+           }else {
+            note.done = !note.done; 
+           }
+            
 
             user.save(function (err) {
                 if (err) {

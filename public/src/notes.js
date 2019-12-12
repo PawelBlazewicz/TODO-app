@@ -37,3 +37,14 @@ export const toggle = async (noteId) => {
     }
     await fetch(`/PATCH/note/`, options)
 }
+
+export const move = async (noteId, destination) => {
+    const options = {
+        method: 'PATCH',
+        body: JSON.stringify({id : noteId, position: destination}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    await fetch(`/PATCH/note/`, options)
+}
