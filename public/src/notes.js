@@ -1,11 +1,11 @@
-export const get = async id => {
+export const get = async()  => {
     
-    const get = await fetch(`/GET/${id}`);
+    const get = await fetch(`/GET/`);
     const data = await get.json();
     return data.notes;
 };
 
-export const add = async (id, note, position) => {
+export const add = async (note, position) => {
     const options = {
         method: 'PUT',
         body: JSON.stringify({text : note, position: position}),
@@ -13,10 +13,10 @@ export const add = async (id, note, position) => {
             'Content-Type': 'application/json'
         }
     }
-    await fetch(`/PUT/note/${id}`, options);
+    await fetch(`/PUT/note/`, options);
 }
 
-export const remove = async (id, noteId) => {
+export const remove = async (noteId) => {
     const options = {
         method: 'DELETE',
         body: JSON.stringify({id : noteId}),
@@ -24,10 +24,10 @@ export const remove = async (id, noteId) => {
             'Content-Type': 'application/json'
         }
     }
-    await fetch(`/DELETE/note/${id}`, options)
+    await fetch(`/DELETE/note/`, options)
 }
 
-export const toggle = async (id, noteId) => {
+export const toggle = async (noteId) => {
     const options = {
         method: 'PATCH',
         body: JSON.stringify({id : noteId}),
@@ -35,5 +35,5 @@ export const toggle = async (id, noteId) => {
             'Content-Type': 'application/json'
         }
     }
-    await fetch(`/PATCH/note/${id}`, options)
+    await fetch(`/PATCH/note/`, options)
 }

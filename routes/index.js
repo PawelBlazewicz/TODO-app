@@ -71,7 +71,12 @@ router.post('/login', (req, res) => {
                     {
                         expiresIn: "1h"
                     });
-                    console.log(user);
+
+                    res.cookie('token', token,{
+                        maxAge: 1000 * 60 * 60 * 1, // would expire after 1 hour
+                        httpOnly: true, // The cookie only accessible by the web server
+                    });
+
                     res.status(200).header('x-auth', token);
                     res.render('loged', {user:user[0]});
                 }

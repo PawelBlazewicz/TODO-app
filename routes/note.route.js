@@ -1,16 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const middleware = require('../middlewares/auth');
 
 const note_controller = require('../controllers/note.controller.js');
 
 
-router.get('/GET/:id', note_controller.getNotes);
+router.get('/GET/',middleware.getTokenCookie, note_controller.getNotes);
 
-router.put('/PUT/note/:id/', note_controller.addNote);
+router.put('/PUT/note/', middleware.getTokenCookie, note_controller.addNote);
 
-router.delete('/DELETE/note/:id/', note_controller.removeNote);
+router.delete('/DELETE/note/', middleware.getTokenCookie, note_controller.removeNote);
 
-router.patch('/PATCH/note/:id/', note_controller.toggleNote);
+router.patch('/PATCH/note/', middleware.getTokenCookie, note_controller.toggleNote);
 
 
 module.exports = router;

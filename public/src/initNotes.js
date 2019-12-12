@@ -1,12 +1,11 @@
 var notes;
-const userId = localStorage.getItem("userId");
 import * as note from "/src/notes.js";
 
 const appendNote = async e => {
   e.preventDefault();
   const position = e.target.parentElement.parentElement.dataset.position;
   const text = document.querySelector(`.note-text${position}`).value;
-  await note.add(userId, text, position);
+  await note.add(text, position);
   showNotes(position);
   document.querySelector(`.note-text${position}`).value = "";
 };
@@ -14,10 +13,10 @@ const appendNote = async e => {
 const menageNotes = async e => {
   const id = e.target.parentElement.dataset.id;
   if (e.target.matches("input.delete")) {
-    await note.remove(userId, id);
+    await note.remove(id);
   } else {
     const id = e.target.parentElement.dataset.id;
-    await note.toggle(userId, id);
+    await note.toggle(id);
   }
   showNotes(1,2,3);
 };
@@ -78,7 +77,7 @@ function drop(e) {
   }
 
 const showNotes = async (...args) => {
-  notes = (await note.get(userId)) || [];
+  notes = (await note.get()) || [];
   if (!notes.length) return;
   args.forEach(position => {
     document.querySelector(`.note-list${position}`).innerHTML = notes

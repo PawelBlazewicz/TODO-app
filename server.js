@@ -2,7 +2,11 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   user = require("./routes/note.route.js"),
   app = express(),
-  mongoose = require("mongoose");
+  mongoose = require("mongoose"),
+  cookieParser = require('cookie-parser');
+ 
+
+app.use(cookieParser())
 
 // ROUTES REQUIRING
 const indexRoutes = require("./routes/index");
@@ -17,6 +21,7 @@ var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // APP CONFIG
+app.use(cookieParser())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/", user);
