@@ -3,7 +3,7 @@ import events from "/src/events.js"
 
 
 
-export default (title, enu) => {
+export default (title = "✔ TODO", enu) => {
   const noteDestination = document.querySelector(".note-main");
 
   const noteContainer = document.createElement("div");
@@ -11,7 +11,7 @@ export default (title, enu) => {
   noteContainer.classList.add(`note-container${enu}`);
   noteDestination.appendChild(noteContainer);
   noteContainer.dataset.position = enu;
-  noteContainer.innerHTML = `<h1 class="list-title">${title || "✔ TODO"}</h1>`;
+  noteContainer.innerHTML = `<h1 class="list-title">${title}</h1>`;
   const noteList = document.createElement("div");
   noteList.classList.add(`note-list${enu}`);
   noteList.classList.add(`note-list`);

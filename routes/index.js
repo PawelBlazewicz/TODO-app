@@ -15,6 +15,14 @@ router.get('/register', (req, res) => {
     res.render('register');
 });
 
+router.get('/logout', (req, res) => {
+    res.cookie('token', " ",{
+        maxAge: 1000, 
+        httpOnly: true, 
+    });
+    res.redirect('/');
+});
+
 router.post('/register', (req, res) => {
     User.find({name: req.body.username})
         .exec()
