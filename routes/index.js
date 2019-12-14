@@ -3,7 +3,7 @@ const express    = require('express'),
       User       = require('../models/user.model'),
       bcrypt     = require('bcryptjs'),
       jwt        = require('jsonwebtoken'),
-      middleware = require('../middlewares/auth');
+      auth = require('../middlewares/auth');
 
 // MAIN SITE
 router.get('/', (req, res) => {
@@ -51,7 +51,7 @@ router.post('/register', (req, res) => {
         })
 })
 
-router.get('/loged', middleware.checkToken, (req, res) => {
+router.get('/loged', auth.checkToken, (req, res) => {
     res.render('loged');
 })
 

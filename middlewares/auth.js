@@ -1,7 +1,6 @@
-const middlewareObj = {},
-    jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-middlewareObj.checkToken = (req, res, next) => {
+exports.checkToken = (req, res, next) => {
     const header = req.headers['authorization'];
 
     if(typeof header !== 'undefined') {
@@ -16,7 +15,7 @@ middlewareObj.checkToken = (req, res, next) => {
     }
 }
 
-middlewareObj.getTokenCookie = (req, res, next) => {
+exports.getTokenCookie = (req, res, next) => {
     
     const token = req.cookies['token'];
     //if no token found, return response (without going to the next middelware)
@@ -32,6 +31,3 @@ middlewareObj.getTokenCookie = (req, res, next) => {
       res.status(400).send("Invalid token.");
     }
 };
-
-
-module.exports = middlewareObj;
