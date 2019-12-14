@@ -4,10 +4,10 @@ import showNotes from "/src/showNotes.js";
 const appendNote = async e => {
   e.preventDefault();
   const position = e.target.parentElement.parentElement.dataset.position;
-  const text = document.querySelector(`.note-text${position}`).value;
+  const text = document.querySelector(`.note-container${position} .note-text`).value;
   await note.add(text, position);
   showNotes(position);
-  document.querySelector(`.note-text${position}`).value = "";
+  document.querySelector(`.note-container${position} .note-text`).value = "";
 };
 
 const menageNotes = async e => {
@@ -44,20 +44,20 @@ function getNewPosition(e) {
     newPosition = e.target.dataset.position;
   }
 }
-export default (enu) => {
+export default (position) => {
   document
-    .querySelector(`.note-list${enu}`)
+    .querySelector(`.note-container${position} .note-list`)
     .addEventListener("dragstart", startDrag);
   document
-    .querySelector(`.note-list${enu}`)
+    .querySelector(`.note-container${position} .note-list`)
     .addEventListener("dragend", endDrag);
   document
-    .querySelector(`.note-container${enu}`)
+    .querySelector(`.note-container${position}`)
     .addEventListener("dragenter", getNewPosition);
   document
-    .querySelector(`.note-form${enu}`)
+    .querySelector(`.note-container${position} .note-form`)
     .addEventListener("submit", appendNote);
   document
-    .querySelector(`.note-list${enu}`)
+    .querySelector(`.note-container${position} .note-list`)
     .addEventListener("click", menageNotes);
 };

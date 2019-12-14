@@ -9,7 +9,7 @@ export default async (...args) => {
       args = [...new Set(notes.map(note => note.position))];
     }
     args.forEach(position => {
-      document.querySelector(`.note-list${position}`).innerHTML = notes
+      document.querySelector(`.note-container${position} .note-list`).innerHTML = notes
         .filter(note => note.position == position)
         .reduce(
           (html, note, i) => {
