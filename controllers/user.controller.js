@@ -54,7 +54,7 @@ exports.login = function (req, res) {
                         user: user[0].user,
                         userId: user[0]._id
                     },
-                    process.env.JWT_KEY || "secretKey",
+                    process.env.JWT_KEY,
                     {
                         expiresIn: "1h"
                     });
