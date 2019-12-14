@@ -34,7 +34,7 @@ async function endDrag(e) {
   e.target.classList.remove("hide");
   if (e.target.dataset.position !== newPosition && newPosition) {
     await note.move(e.target.dataset.id, newPosition);
-    showNotes(1,2,3);
+    showNotes(e.target.dataset.position, newPosition);
   }
 }
 
