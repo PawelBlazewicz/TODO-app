@@ -1,6 +1,6 @@
 export const get = async()  => {
     
-    const get = await fetch(`/GET/`);
+    const get = await fetch(`/note/`);
     const data = await get.json();
     return data.notes;
 };
@@ -13,7 +13,7 @@ export const add = async (note, position) => {
             'Content-Type': 'application/json'
         }
     }
-    await fetch(`/PUT/note/`, options);
+    await fetch(`/note/`, options);
 }
 
 export const remove = async (noteId) => {
@@ -24,7 +24,7 @@ export const remove = async (noteId) => {
             'Content-Type': 'application/json'
         }
     }
-    await fetch(`/DELETE/note/`, options)
+    await fetch(`/note/`, options)
 }
 
 export const toggle = async (noteId) => {
@@ -35,7 +35,7 @@ export const toggle = async (noteId) => {
             'Content-Type': 'application/json'
         }
     }
-    await fetch(`/PATCH/note/`, options)
+    await fetch(`/note/`, options)
 }
 
 export const move = async (noteId, destination) => {
@@ -46,5 +46,5 @@ export const move = async (noteId, destination) => {
             'Content-Type': 'application/json'
         }
     }
-    await fetch(`/PATCH/note/`, options)
+    await fetch(`/note/`, options)
 }

@@ -3,12 +3,12 @@ const express = require("express");
     (middleware = require("../middlewares/auth")),
     (note_controller = require("../controllers/note.controller.js"));
 
-router.get("/GET/", middleware.getTokenCookie, note_controller.getNotes);
+router.get("/note/", middleware.getTokenCookie, note_controller.getNotes);
 
-router.put("/PUT/note/", middleware.getTokenCookie, note_controller.addNote);
+router.put("/note/", middleware.getTokenCookie, note_controller.addNote);
 
-router.delete("/DELETE/note/", middleware.getTokenCookie,  note_controller.removeNote);
+router.delete("/note/", middleware.getTokenCookie,  note_controller.removeNote);
 
-router.patch("/PATCH/note/", middleware.getTokenCookie, note_controller.toggleNote);
+router.patch("/note/", middleware.getTokenCookie, note_controller.toggleNote);
 
 module.exports = router;
