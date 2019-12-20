@@ -1,4 +1,4 @@
-import initNotes from '/src/initNotes.js'
+import initNotes from "/src/initNotes.js";
 
 initNotes("TODO ✏", 1);
 initNotes("In Progres", 2);

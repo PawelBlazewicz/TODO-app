@@ -23,7 +23,7 @@ exports.getTokenCookie = (req, res, next) => {
   
     try {
       //if can verify the token, set req.user and pass to next middleware
-      const decoded = jwt.verify(token, process.env.JWT_KEY || "secretKey");
+      const decoded = jwt.verify(token, process.env.JWT_KEY);
       req.user = decoded;
       next();
     } catch (ex) {

@@ -1,4 +1,5 @@
 const express = require("express"),
+  helmet = require('helmet'),
   bodyParser = require("body-parser"),
   user = require("./routes/note.route.js"),
   app = express(),
@@ -6,14 +7,13 @@ const express = require("express"),
   cookieParser = require('cookie-parser');
  
 
-app.use(cookieParser())
+app.use(cookieParser());
 
 // ROUTES REQUIRING
 const indexRoutes = require("./routes/index");
 
 // DB CONFIG
-var dev_db_url =
-  "mongodb+srv://someuser:abcd1234@cluster0-wlozt.mongodb.net/test?retryWrites=true&w=majority";
+var dev_db_url = "";
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.Promise = global.Promise;
@@ -21,7 +21,8 @@ var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // APP CONFIG
-app.use(cookieParser())
+app.use(helmet());
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/", user);
@@ -37,7 +38,7 @@ app.use(function(req, res, next){
 app.use(indexRoutes);
 
 // SERVER SETUP
-let port = 3041;
-app.listen(port, () => {
+let port = 3000;
+app.listen(process.env.PORT || port, () => {
   console.log("Server is up and running on port numner " + port);
 });
