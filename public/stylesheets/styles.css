@@ -139,6 +139,7 @@ body {
 
 .delete,
 .add-btn {
+    padding: 2px;
     border: #7c1216 solid 1px;
     border-radius: 3px;
     font-weight: 700;
