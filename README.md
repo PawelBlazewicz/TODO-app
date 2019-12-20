@@ -9,3 +9,5 @@ Dodane taski można swobodnie przeciągać miedzy listami oraz odhaczać( zaciem
 https://mintrelo.herokuapp.com/
 ## 
 ![mintrelo](https://user-images.githubusercontent.com/52447280/70864155-bce19800-1f4f-11ea-88b3-61a8330a7e44.png)
+
+
