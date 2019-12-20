@@ -4,7 +4,8 @@ import showNotes from "/src/showNotes.js";
 const appendNote = async e => {
   e.preventDefault();
   const position = e.target.parentElement.parentElement.dataset.position;
-  const text = document.querySelector(`.note-container${position} .note-text`).value;
+  const text = document.querySelector(`.note-container${position} .note-text`)
+    .value;
   await note.add(text, position);
   showNotes(position);
   document.querySelector(`.note-container${position} .note-text`).value = "";
@@ -44,7 +45,7 @@ function getNewPosition(e) {
     newPosition = e.target.dataset.position;
   }
 }
-export default (position) => {
+export default position => {
   document
     .querySelector(`.note-container${position} .note-list`)
     .addEventListener("dragstart", startDrag);
